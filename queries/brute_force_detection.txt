@@ -1,0 +1,5 @@
+index=main "Failed password"
+| rex field=_raw "from (?<src_ip>[a-fA-F0-9:.]+)"
+| stats count by src_ip
+| where count > 3
+| sort - count
